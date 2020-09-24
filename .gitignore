@@ -1,0 +1,16 @@
+*.cia
+*.nds
+*.o
+*.arm7
+*.arm9
+*.elf
+*.d
+*.map
+title
+arm9/build
+arm7/build
+cardengine_arm7/build
+BootLoader/build
+BootLoader/load.bin
+arm9/source/version.h
+desktop.ini
