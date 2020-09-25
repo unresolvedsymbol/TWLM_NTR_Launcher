@@ -30,7 +30,7 @@ all: cardengine_arm7 bootloader $(TARGET).nds $(TARGET).cia title
 
 $(TARGET).nds:	$(TARGET).arm7 $(TARGET).arm9
 	ndstool	-c $(TARGET).nds -7 $(TARGET).arm7.elf -9 $(TARGET).arm9.elf \
-			-b $(CURDIR)/icon.bmp "NTR Launcher;Extended cart launcher;Chishm, Apache Thunder, TWLMenu team" \
+			-b $(CURDIR)/icon.bmp "NTR Launcher;Enhanced cart loader;Chishm, Apache Thunder" \
 			-g KKGP 01 "NTR LAUNCHER" -z 80040000 -u 00030004
 
 title: $(TARGET).nds
