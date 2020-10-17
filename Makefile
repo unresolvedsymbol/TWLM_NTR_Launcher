@@ -21,16 +21,16 @@ export VERSTRING	:=	$(VERSION_MAJOR).$(VERSION_MINOR)
 #---------------------------------------------------------------------------------
 export PATH		:=	$(DEVKITARM)/bin:$(PATH)
 
-.PHONY: cardengine_arm7 bootloader clean arm7/$(TARGET).elf arm9/$(TARGET).elf
+.PHONY: cardengine_arm7 bootloader bootloaderAlt clean arm7/$(TARGET).elf arm9/$(TARGET).elf
 
 #---------------------------------------------------------------------------------
 # main targets
 #---------------------------------------------------------------------------------
-all: cardengine_arm7 bootloader $(TARGET).nds $(TARGET).cia title
+all: cardengine_arm7 bootloader bootloaderAlt $(TARGET).nds $(TARGET).cia title 
 
 $(TARGET).nds:	$(TARGET).arm7 $(TARGET).arm9
 	ndstool	-c $(TARGET).nds -7 $(TARGET).arm7.elf -9 $(TARGET).arm9.elf \
-			-b $(CURDIR)/icon.bmp "NTR Launcher;Enhanced cart loader;Chishm, Apache Thunder" \
+			-b $(CURDIR)/icon.bmp "NTR Launcher;NitroHax provided by Chishm;Apache Thunder, TWLM++ Team" \
 			-g KKGP 01 "NTR LAUNCHER" -z 80040000 -u 00030004
 
 title: $(TARGET).nds
@@ -68,6 +68,7 @@ clean:
 	@rm -fr $(TARGET).arm7.elf
 	@rm -fr $(TARGET).arm9.elf
 	@$(MAKE) -C bootloader clean
+	@$(MAKE) -C bootloaderAlt clean
 	@$(MAKE) -C arm9 clean
 	@$(MAKE) -C arm7 clean
 	@$(MAKE) -C cardengine_arm7 clean
@@ -77,3 +78,6 @@ data:
 
 bootloader: data
 	@$(MAKE) -C bootloader
+
+bootloaderAlt: data
+	@$(MAKE) -C bootloaderAlt
